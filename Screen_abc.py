@@ -39,7 +39,9 @@ class Screen_abc(metaclass=abc.ABCMeta):
                 grid[i][j] = (i * 32, j * 32)
         self.grid = tuple(grid)
 
-
+        self.Font_L = 'hg創英角ﾎﾟｯﾌﾟ体hgp創英角ﾎﾟｯﾌﾟ体hgs創英角ﾎﾟｯﾌﾟ体'
+        self.Font_M = 'yugothicyugothicuisemiboldyugothicuibold'
+        self.Font_S = 'simsunnsimsun'
 
 
     @abc.abstractmethod
@@ -61,17 +63,17 @@ class Screen_abc(metaclass=abc.ABCMeta):
 
 
     def setText_L(self,text,position,size,color=White):
-        font = pygame.font.SysFont('hg創英角ﾎﾟｯﾌﾟ体hgp創英角ﾎﾟｯﾌﾟ体hgs創英角ﾎﾟｯﾌﾟ体', size)
+        font = pygame.font.SysFont(self.Font_L, size)
         message = font.render(text, False, color)
         screen.blit(message, position)
 
     def setText_M(self,text,position,size,color=White):
-        font = pygame.font.SysFont('yugothicyugothicuisemiboldyugothicuibold', size)
+        font = pygame.font.SysFont(self.Font_M, size)
         message = font.render(text, False, color)
         screen.blit(message, position)
 
     def setText_S(self,text,position,size = 25,color=White):
-        font = pygame.font.SysFont('simsunnsimsun', size)
+        font = pygame.font.SysFont(self.Font_S, size)
         message = font.render(text, False, color)
         screen.blit(message, position)
 
