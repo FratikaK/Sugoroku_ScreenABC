@@ -9,22 +9,18 @@ TEXT_SIZE = 25
 TITLE_SIZE = 50
 
 # 一人で遊ぶはTrue、みんなで遊ぶはFalseにする
-SOLO = True
+SOLO = False
 
 PLAYER = "プレイヤーの人数"
 CPU = "CPUの人数"
 TURN = "ターン数"
-EXAMPLE1 = "EXAMPLE1"
-EXAMPLE2 = "EXAMPLE2"
-EXAMPLE3 = "EXAMPLE3"
-EXAMPLE4 = "EXAMPLE4"
 
 if SOLO:
-    config = {CPU: 1, TURN: 10, EXAMPLE1: 1, EXAMPLE2: 1, EXAMPLE3: 1, EXAMPLE4: 1}
-    select_position = {0: 100, 1: 130, 2: 160, 3: 190, 4: 220, 5: 250, 6: 280}
+    config = {CPU: 1, TURN: 10}
+    select_position = {0: 100, 1: 130, 2: 160}
 else:
-    config = {PLAYER: 2, CPU: 1, TURN: 10, EXAMPLE1: 1, EXAMPLE2: 1, EXAMPLE3: 1, EXAMPLE4: 1}
-    select_position = {0: 100, 1: 130, 2: 160, 3: 190, 4: 220, 5: 250, 6: 280, 7: 310}
+    config = {PLAYER: 2, CPU: 1, TURN: 10}
+    select_position = {0: 100, 1: 130, 2: 160, 3: 190}
 
 now_select = 0
 limit = len(select_position) - 1
@@ -38,15 +34,10 @@ for cf in config.keys():
 # データクラスとして利用する
 # 設定が終わった後の数値はここに格納する
 class Config:
-    def __init__(self, player_num: int, cpu_num: int, turn: int, example1: int, example2: int, example3: int,
-                 example4: int):
+    def __init__(self, player_num: int, cpu_num: int, turn: int):
         self.player_num = player_num
         self.cpu_num = cpu_num
         self.turn = turn
-        self.example1 = example1
-        self.example2 = example2
-        self.example3 = example3
-        self.example4 = example4
 
 
 class ConfigScreen(Screen_abc):
@@ -98,16 +89,13 @@ class ConfigScreen(Screen_abc):
                         now_select = 0
                 elif event.key == K_SPACE:
                     if now_select == limit:
-                        SC.ScreenNum = 0
+                        # SC.ScreenNum = 0
                         c = config
                         # main.pyまたは、ゲームを動かすクラスにインスタンスを格納させる
                         if SOLO:
-                            Config(1, c.get(CPU), c.get(TURN), c.get(EXAMPLE1), c.get(EXAMPLE2), c.get(EXAMPLE3),
-                                   c.get(EXAMPLE4))
+                            Config(1, c.get(CPU), c.get(TURN))
                         else:
-                            Config(c.get(PLAYER), c.get(CPU), c.get(TURN), c.get(EXAMPLE1), c.get(EXAMPLE2),
-                                   c.get(EXAMPLE3),
-                                   c.get(EXAMPLE4))
+                            Config(c.get(PLAYER), c.get(CPU), c.get(TURN))
                         # TODO 次の画面にすすむ処理、またはキャラクター選択画面？
                         return
 
