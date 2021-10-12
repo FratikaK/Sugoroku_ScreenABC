@@ -35,6 +35,20 @@ for cf in config.keys():
     i += 1
 
 
+# データクラスとして利用する
+# 設定が終わった後の数値はここに格納する
+class Config:
+    def __init__(self, player_num: int, cpu_num: int, turn: int, example1: int, example2: int, example3: int,
+                 example4: int):
+        self.player_num = player_num
+        self.cpu_num = cpu_num
+        self.turn = turn
+        self.example1 = example1
+        self.example2 = example2
+        self.example3 = example3
+        self.example4 = example4
+
+
 class ConfigScreen(Screen_abc):
     def __init__(self):
         super(ConfigScreen, self).__init__()
@@ -82,10 +96,20 @@ class ConfigScreen(Screen_abc):
                     now_select = now_select + 1
                     if now_select > limit:
                         now_select = 0
-                elif event.key == K_ESCAPE:
+                elif event.key == K_SPACE:
                     if now_select == limit:
+                        SC.ScreenNum = 0
+                        c = config
+                        # main.pyまたは、ゲームを動かすクラスにインスタンスを格納させる
+                        if SOLO:
+                            Config(1, c.get(CPU), c.get(TURN), c.get(EXAMPLE1), c.get(EXAMPLE2), c.get(EXAMPLE3),
+                                   c.get(EXAMPLE4))
+                        else:
+                            Config(c.get(PLAYER), c.get(CPU), c.get(TURN), c.get(EXAMPLE1), c.get(EXAMPLE2),
+                                   c.get(EXAMPLE3),
+                                   c.get(EXAMPLE4))
                         # TODO 次の画面にすすむ処理、またはキャラクター選択画面？
-                        pass
+                        return
 
                 if now_select < limit:
                     if event.key == K_LEFT:
