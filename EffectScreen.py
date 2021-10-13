@@ -5,7 +5,7 @@ import Screen_abc as SC
 from Screen_abc import Screen_abc
 import sys
 
-effect_instance = list()
+effect_instance = pygame.sprite.Group()
 
 
 def split_image(image, width: int, height: int, num: int):
@@ -24,11 +24,8 @@ class EffectScreen(Screen_abc):
         super().__init__()
 
     def display(self):
-        for effect in effect_instance:
-            effect.update()
-            effect.draw(SC.screen)
-
-        pygame.display.update()
+        effect_instance.update()
+        effect_instance.draw(SC.screen)
 
     # 非同期で実行させるので何もしない
     def getEvent(self):
@@ -38,6 +35,21 @@ class EffectScreen(Screen_abc):
 class SampleEffect(pygame.sprite.Sprite):
     frame = 0
 
-    def __init__(self):
+    def __init__(self, x_location, y_location):
         super(SampleEffect, self).__init__()
-        self.images = split_image("img/effect/sample_effect.png", 687, 24, 21)
+        self.images = [pygame.image.load("./img/uma/uma01.png"),
+                       pygame.image.load("./img/uma/uma02.png"),
+                       pygame.image.load("./img/uma/uma03.png"),
+                       pygame.image.load("./img/uma/uma04.png"),
+                       pygame.image.load("./img/uma/uma05.png"),
+                       pygame.image.load("./img/uma/uma06.png")]
+        self.image = self.images[self.frame]
+        self.rect = self.image.get_rect()
+        self.rect.x = x_location
+        self.rect.y = y_location
+
+    def update(self):
+        if self.frame > len(self.images) - 1:
+            self.frame = 0
+        self.image = self.images[self.frame]
+        self.frame += 1
