@@ -5,12 +5,12 @@ import Screen_abc as SC
 from Screen_abc import Screen_abc
 import sys
 
-images = [pygame.image.load("./img/uma/uma01.png"),
-          pygame.image.load("./img/uma/uma02.png"),
-          pygame.image.load("./img/uma/uma03.png"),
-          pygame.image.load("./img/uma/uma04.png"),
-          pygame.image.load("./img/uma/uma05.png"),
-          pygame.image.load("./img/uma/uma06.png")]
+images = [pygame.image.load("img/uma/uma01.png"),
+          pygame.image.load("img/uma/uma02.png"),
+          pygame.image.load("img/uma/uma03.png"),
+          pygame.image.load("img/uma/uma04.png"),
+          pygame.image.load("img/uma/uma05.png"),
+          pygame.image.load("img/uma/uma06.png")]
 
 texts = ["Now Loading", "Now Loading.", "Now Loading..", "Now Loading...", "Now Loading....", "Now Loading....."]
 
