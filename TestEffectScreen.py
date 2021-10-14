@@ -38,5 +38,5 @@ class TestEffectScreen(Screen_abc):
                     self.y_location += 10
                     effect_group.add(CircleEffect(self.x_location,self.y_location))
                 if event.key == K_1:
-                    effect_group.add(ScreenLineEffect("a"))
+                    effect_group.add(ScreenLineEffect("Test Effect"))
 
