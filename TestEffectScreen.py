@@ -1,3 +1,5 @@
+import random
+
 import pygame
 from pygame.locals import *
 
@@ -7,6 +9,8 @@ import sys
 
 from effect import *
 
+turn = 0
+
 
 class TestEffectScreen(Screen_abc):
     def __init__(self):
@@ -15,11 +19,14 @@ class TestEffectScreen(Screen_abc):
         self.y_location = 100
 
     def display(self):
-        SC.screen.fill((0, 0, 0))
+        SC.screen.fill((0, 128, 0))
+
+        # super().updateをする前にdraw_effectを入れる
         draw_effect()
         super().update(10)
 
     def getEvent(self):
+        global turn
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -36,7 +43,14 @@ class TestEffectScreen(Screen_abc):
                     effect_group.add(IceEffect(self.x_location, self.y_location))
                 if event.key == K_DOWN:
                     self.y_location += 10
-                    effect_group.add(CircleEffect(self.x_location,self.y_location))
+                    effect_group.add(CircleEffect(self.x_location, self.y_location))
                 if event.key == K_1:
-                    effect_group.add(ScreenLineEffect("Test Effect"))
-
+                    effect_group.add(ScreenLineFontEffect("Test Effect"))
+                if event.key == K_z:
+                    effect_group.add(ScreenLineFontEffect("ターン " + str(turn)))
+                    turn += 1
+                if event.key == K_f:
+                    rand = random.randint(-30, 30)
+                    effect_group.add(CoinNumFontEffect(rand, 600, 200))
+                if event.key == K_c:
+                    effect_group.add(ScreenChangeEffect(2))

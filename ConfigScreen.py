@@ -3,6 +3,7 @@ from pygame.locals import *
 
 import Screen_abc as SC
 from Screen_abc import Screen_abc
+from effect import *
 import sys
 
 TEXT_SIZE = 25
@@ -46,7 +47,7 @@ class ConfigScreen(Screen_abc):
 
     # Override
     def display(self):
-        SC.screen.fill((0, 0, 0))
+        SC.screen.fill((0, 120, 0))
         text_width = 400
         num_width = 800
         height = 100
@@ -65,6 +66,7 @@ class ConfigScreen(Screen_abc):
         # 操作の仕方表示
         super().setText_M(
             "←　→で数値変更、設定が大丈夫ならスペースキーで次へを押してね", (30, 600), TEXT_SIZE)
+        draw_effect()
         super().update(60)
 
     # Override
