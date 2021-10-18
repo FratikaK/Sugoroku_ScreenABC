@@ -11,17 +11,17 @@ from effect import *
 
 turn = 0
 
-back_ground_image = pygame.image.load("img/background/river2.png")
+back_ground_image = pygame.image.load("img/background/forest2.png")
 
 
-class TestEffectScreen(Screen_abc):
+class BackGroundScreen(Screen_abc):
     def __init__(self):
-        super(TestEffectScreen, self).__init__()
+        super(BackGroundScreen, self).__init__()
         self.x_location = 100
         self.y_location = 100
 
     def display(self):
-        SC.screen.blit(back_ground_image,back_ground_image.get_rect())
+        SC.screen.blit(back_ground_image, back_ground_image.get_rect())
         # super().updateをする前にdraw_effectを入れる
         draw_effect()
         super().update(10)
@@ -54,4 +54,4 @@ class TestEffectScreen(Screen_abc):
                     rand = random.randint(-30, 30)
                     effect_group.add(CoinNumFontEffect(rand, 600, 200))
                 if event.key == K_c:
-                    effect_group.add(ScreenChangeEffect(5))
+                    effect_group.add(ScreenChangeEffect(4))

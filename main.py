@@ -1,4 +1,5 @@
 # from Screen_abc import Screen
+from BackGroundScreen import BackGroundScreen
 from ConfigScreen import ConfigScreen
 from LoadingScreen import NowLoading
 from TestScreen import TestScreen
@@ -8,7 +9,7 @@ from TestEffectScreen import TestEffectScreen
 from effect import effect_group
 
 
-screen = [TestScreen(), TestScreen2(), ConfigScreen(), NowLoading(), TestEffectScreen()]
+screen = [TestScreen(), TestScreen2(), ConfigScreen(), NowLoading(), TestEffectScreen(),BackGroundScreen()]
 
 if __name__ == '__main__':
     while True:
