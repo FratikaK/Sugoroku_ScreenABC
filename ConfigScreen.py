@@ -98,7 +98,7 @@ class ConfigScreen(Screen_abc):
                             Config(1, c.get(CPU), c.get(TURN))
                         else:
                             Config(c.get(PLAYER), c.get(CPU), c.get(TURN))
-                        # TODO 次の画面にすすむ処理、またはキャラクター選択画面？
+                        effect_group.add(ScreenChangeEffect(4))
                         return
 
                 if now_select < limit:
