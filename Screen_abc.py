@@ -10,7 +10,7 @@ clock = pygame.time.Clock()
 backImg = pygame.image.load('Grass2_5_32bit.png')  # 座標(0,128,32,32)
 
 # スクリーン切り替え用変数
-ScreenNum = 4
+ScreenNum = 7
 
 # Set Up Colors
 Aqua = (0, 255, 255)
